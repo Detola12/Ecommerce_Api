@@ -46,6 +46,13 @@ namespace ecommerceapi.Repository
             return product;
         }
 
+        
+        // public async Task<decimal> GetMaxProductsAsync(){
+        //     var max = await _context.Products.FirstOrDefaultAsync(x => x.Price);
+            
+        //     return max;
+        // } 
+
         public async Task<List<Product>> GetAllProductsAsync(QueryObject query)
         {
             var products = _context.Products.AsQueryable();
@@ -54,6 +61,9 @@ namespace ecommerceapi.Repository
             }
             if(query.SortBy.Equals("Price", StringComparison.OrdinalIgnoreCase)){
                 products = query.IsDescending ? products.OrderByDescending(d => d.Price) : products.OrderBy(d => d.Price);
+            }
+            if(!string.IsNullOrWhiteSpace(query.Category)){
+                products = products.Include(c => c.Category).Where(a => a.Category.Name.Contains(query.Category));
             }
 
             var skipNumber = (query.PageNumber - 1) * query.PageSize;

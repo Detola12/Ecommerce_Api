@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adeto\\documents\\EcommerceApi\\ecommerceapi\\EcommerceApi.csproj": {}
+    "C:\\Users\\adeto\\Documents\\EcommerceApi\\EcommerceApi\\EcommerceApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adeto\\documents\\EcommerceApi\\ecommerceapi\\EcommerceApi.csproj": {
+    "C:\\Users\\adeto\\Documents\\EcommerceApi\\EcommerceApi\\EcommerceApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adeto\\documents\\EcommerceApi\\ecommerceapi\\EcommerceApi.csproj",
+        "projectUniqueName": "C:\\Users\\adeto\\Documents\\EcommerceApi\\EcommerceApi\\EcommerceApi.csproj",
         "projectName": "EcommerceApi",
-        "projectPath": "C:\\Users\\adeto\\documents\\EcommerceApi\\ecommerceapi\\EcommerceApi.csproj",
+        "projectPath": "C:\\Users\\adeto\\Documents\\EcommerceApi\\EcommerceApi\\EcommerceApi.csproj",
         "packagesPath": "C:\\Users\\adeto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adeto\\documents\\EcommerceApi\\ecommerceapi\\obj\\",
+        "outputPath": "C:\\Users\\adeto\\Documents\\EcommerceApi\\EcommerceApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adeto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -72,6 +76,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.0, )"
             }
           },
           "imports": [

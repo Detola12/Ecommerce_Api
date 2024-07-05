@@ -22,9 +22,7 @@ namespace ecommerceapi.Repository
 
 
         public async Task<Category> CreateCategoryAsync(Category category)
-        {
-           
-        
+        {   
             await _context.Categories.AddAsync(category);
             if(await _context.Categories.AnyAsync(c => c.Id == category.ParentId)){
                 var parentCategory = await _context.Categories.FirstOrDefaultAsync(x => x.Id == category.ParentId);
@@ -36,7 +34,7 @@ namespace ecommerceapi.Repository
             return category;
         }
 
-        public async Task<Category> DeleteCategory(int id)
+        public async Task<Category?> DeleteCategory(int id)
         {
             var category = await _context.Categories.FindAsync(id);
             if (category == null){

@@ -6,6 +6,8 @@ using ecommerceapi.Dtos;
 using ecommerceapi.Helpers;
 using ecommerceapi.Interfaces;
 using ecommerceapi.Mappers;
+using EcommerceApi.Dtos.Payment;
+using EcommerceApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ecommerceapi.Controllers
@@ -38,8 +40,15 @@ namespace ecommerceapi.Controllers
             return Ok(product);
         }
 
+        // [HttpGet]
+        // [Route("AddProduct/{id}")]
+        // public async Task<IActionResult> AddProductToCart([FromRoute] int id){
+        //     var cart = await _repo.GetProductById(id);
+        //     new Cookie
+        // }
+
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateProductDto productDto){
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productDto){
 
             if(!ModelState.IsValid){
                 return BadRequest(ModelState);
@@ -54,7 +63,7 @@ namespace ecommerceapi.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] UpdateProductDto productDto){
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromBody] UpdateProductDto productDto){
             if(!ModelState.IsValid){
                 return BadRequest(ModelState);
             }
@@ -71,9 +80,17 @@ namespace ecommerceapi.Controllers
         
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute] int id){
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id){
             var product = await _repo.DeleteProduct(id);
             return Ok(product);
+        }
+
+        [HttpPost]
+        [Route("payment")]
+        public async Task<IActionResult> Payment([FromBody] PaymentDto paymentDto){
+            var pay = new FlutterwaveService();
+            var response = await pay.MakePayment(paymentDto.amount, paymentDto.email, "https://webhook.site/f0678f68-2845-45ed-a739-3ea0376ea92b");
+            return Ok(response);
         }
     }
 }
